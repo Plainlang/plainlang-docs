@@ -8,7 +8,7 @@ One of the most persistent objections raised by software developers against usin
 
 This ambiguity is largely tolerable when specifications serve only as informal documentation or high-level guidance. However, ambiguity becomes an engineering problem when specifications are treated as the source of truth and used as inputs for code generation, and therefore must be managed explicitly.
 
-In spec-driven development, ambiguity first needs to be detected — either through automated detection or by a developer noticing that the software is not behaving as intended. Once identified, the developer can respond either by strengthening the specification itself or by explicitly handling special cases where ambiguity arises (1).
+In spec-driven development, ambiguity first needs to be detected — either through automated detection or by a developer noticing that the software is not behaving as intended. Once identified, the developer can respond either by strengthening the specification itself or by explicitly handling special cases where ambiguity arises[^1].
 
 This whitepaper focuses on the first approach \- strengthening the specification itself \- by introducing a new syntactic feature of the \*\*\*plain specification language: the :Concept: notation. Its purpose is to help developers refine their specifications in ways that reduce the risk of misinterpretation when the specifications are reviewed by human developers or used by AI to fully automatically generate software code. But before describing this new syntactic feature in detail, we take a step back and examine the inherent ambiguity of natural language that makes such a construct necessary \- using the English word “task” as an example.
 
@@ -94,7 +94,7 @@ Here’s how our running example looks using this convention:
 
 Concept names must not contain spaces and may include only letters, digits, and a limited set of special characters such as dots and underscores. This constraint ensures that concepts are easy to recognize programmatically while remaining readable to humans.
 
-The goal of :Concept: is not to eliminate natural language or replace it with a formal ontology, but to provide a mechanism for anchoring meaning where ambiguity is costly while preserving the flexibility of prose elsewhere (2). Accordingly, :Concept: notation is a precision tool rather than a requirement: words like console, describes, or activity may appear without it when the developer does not intend to constrain their interpretation.
+The goal of :Concept: is not to eliminate natural language or replace it with a formal ontology, but to provide a mechanism for anchoring meaning where ambiguity is costly while preserving the flexibility of prose elsewhere[^2]. Accordingly, :Concept: notation is a precision tool rather than a requirement: words like console, describes, or activity may appear without it when the developer does not intend to constrain their interpretation.
 
 To make programmatic tools more robust and easier to develop, \*\*\*plain does not treat plural forms of concept names as syntactic variants of their singular counterparts. Instead, each concept name is interpreted as a distinct concept. As a result, plurality must be expressed through surrounding language \- for example, by writing :Task: items rather than relying on a pluralized concept name such as :Tasks:.
 
@@ -118,7 +118,9 @@ The primary goal of requiring that a concept be explicitly defined before it can
 
 This requirement also helps surface errors early. By requiring that every concept be explicitly defined as part of the specification, a misspelled concept name is no longer indistinguishable from a new one. Tools can therefore detect typos, accidental variations in naming, and unintended introductions of new concepts rather than allowing such issues to silently introduce ambiguity.
 
-In \*\*\*plain, concepts must be defined in the definitions section (3), which is denoted by a special heading. Centralizing concept definitions in a dedicated section makes them easy to review, reference, and reason about as a coherent vocabulary, while keeping the remainder of the specification focused on behavior and constraints.
+In \*\*\*plain, concepts must be defined in the definitions section[^3], which is denoted by a special heading.
+
+Centralizing concept definitions in a dedicated section makes them easy to review, reference, and reason about as a coherent vocabulary, while keeping the remainder of the specification focused on behavior and constraints.
 
 Here is the full example:
 
@@ -152,7 +154,9 @@ By enforcing a single canonical form for definitions, \*\*\*plain separates what
 
 In larger specifications, it would be easy to miss that a concept has already been defined elsewhere if redefinition were allowed. More importantly, permitting redefinition would allow multiple, potentially conflicting meanings to coexist under the same name, undermining the purpose of introducing explicit concepts in the first place.
 
-\*\*\*plain supports modular specification structure (4). As a result, a concept definition is not necessarily visible in all parts of the specification, but only in the parts where it is explicitly defined or imported. Despite this limited visibility, \*\*\*plain requires that each concept name be globally unique across the entire specification as seen by the renderer after resolving imports.
+\*\*\*plain supports modular specification structure[^4]. As a result, a concept definition is not necessarily visible in all parts of the specification, but only in the parts where it is explicitly defined or imported.
+
+Despite this limited visibility, \*\*\*plain requires that each concept name be globally unique across the entire specification as seen by the renderer after resolving imports.
 
 The motivation for this rule is primarily human, not technical. Once a human reader encounters a concept name and associates it with a particular meaning, there is no reliable mechanism for “forgetting” that association when the same name is later reused with a different meaning. Allowing the same concept name to denote different ideas in different modules would therefore create persistent confusion, even if those modules are technically separate.
 
@@ -193,7 +197,7 @@ By making case sensitivity a rule rather than a convention, \*\*\*plain reinforc
 
 5. A concept’s meaning must not change
 
-Philosophers of language (5) have long pointed out that words do not carry meaning in isolation. Instead, meaning emerges through how words and concepts are used in context. As a result, a concept’s meaning is not fixed solely by its explicit definition; it is also shaped \- and can be distorted \- by how it is used in the specification text.
+Philosophers of language[^5] have long pointed out that words do not carry meaning in isolation. Instead, meaning emerges through how words and concepts are used in context. As a result, a concept’s meaning is not fixed solely by its explicit definition; it is also shaped \- and can be distorted \- by how it is used in the specification text.
 
 Let’s take as an example the definition of :Task: from before:
 
@@ -217,10 +221,8 @@ By introducing the :Concept: notation, \*\*\*plain makes decisions about the mea
 
 The :Concept: notation and its accompanying rules provide a disciplined way to define, reuse, and validate such concepts without turning specifications into formal ontologies or rigid schemas. Where precision is required, they strengthen specifications by making key meanings explicit and stable, while allowing natural language to remain expressive elsewhere.
 
-Footnotes:
-
-1. See the blog post “Beyond Vibe Coding” for background.  
-2. Readers familiar with Domain-Driven Design may notice a resemblance between concepts in \*\*\*plain and the Ubiquitous Language. This resemblance is not accidental. Both approaches are motivated by the same underlying problem: the ambiguity of natural language. The difference lies not in the problem they address, but in where ambiguity arises and how it can be resolved. Ubiquitous Language assumes that ambiguity can be detected, discussed, and repaired through interaction between developers and domain experts. :Concept: notation, on the other hand, improves how humans communicate intent to the \*\*\*plain renderer by making fewer things guessable and more things explicit.  
-3. The other sections are technical specs, test specs, and functional specs. More information about these sections will be provided in a follow up whitepaper.  
-4. The details of the support for modular specification structure in \*\*\*plain will be provided in a follow up whitepaper.  
-5. Ludwig Wittgenstein, Philosophical Investigations
+[^1]: See the blog post [Beyond Vibe Coding](https://blog.codeplain.ai/p/beyond-vibe-coding) for background.
+[^2]: Readers familiar with Domain-Driven Design may notice a resemblance between concepts in \*\*\*plain and the Ubiquitous Language. This resemblance is not accidental. Both approaches are motivated by the same underlying problem: the ambiguity of natural language. The difference lies not in the problem they address, but in where ambiguity arises and how it can be resolved. Ubiquitous Language assumes that ambiguity can be detected, discussed, and repaired through interaction between developers and domain experts. :Concept: notation, on the other hand, improves how humans communicate intent to the \*\*\*plain renderer by making fewer things guessable and more things explicit.
+[^3]: The other sections are technical specs, test specs, and functional specs. More information about these sections will be provided in a follow up whitepaper.
+[^4]: The details of the support for modular specification structure in \*\*\*plain will be provided in a follow up whitepaper.
+[^5]: Ludwig Wittgenstein, Philosophical Investigations
