@@ -18,3 +18,31 @@
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
+
+/* Docusaurus usually puts language-* on <pre>, not <code> */
+pre[class*="language-plainlang"] .token.class-name,
+.prism-code.language-plainlang .token.class-name {
+  font-weight: 700 !important;
+}
+
+pre[class*="language-plainlang"] .token.keyword,
+.prism-code.language-plainlang .token.keyword {
+  color: #2f9e44 !important;
+}
+
+pre[class*="language-plainlang"] .token.string,
+.prism-code.language-plainlang .token.string {
+  color: #e8590c !important;
+}
+
+/* Bold the whole **...** token */
+pre[class*="language-plainlang"] .token.important,
+.prism-code.language-plainlang .token.important {
+  font-weight: 700 !important;
+}
+
+/* Hide the actual ** markers (remove from layout, not just make transparent) */
+pre[class*="language-plainlang"] .token.bold-marker,
+.prism-code.language-plainlang .token.bold-marker {
+  display: none !important;
+}
