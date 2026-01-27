@@ -10,7 +10,7 @@ This ambiguity is largely tolerable when specifications serve only as informal d
 
 In spec-driven development, ambiguity first needs to be detected — either through automated detection or by a developer noticing that the software is not behaving as intended. Once identified, the developer can respond either by strengthening the specification itself or by explicitly handling special cases where ambiguity arises[^1].
 
-This whitepaper focuses on the first approach \- strengthening the specification itself \- by introducing a new syntactic feature of the \*\*\*plain specification language: the :Concept: notation. Its purpose is to help developers refine their specifications in ways that reduce the risk of misinterpretation when the specifications are reviewed by human developers or used by AI to fully automatically generate software code. But before describing this new syntactic feature in detail, we take a step back and examine the inherent ambiguity of natural language that makes such a construct necessary \- using the English word “task” as an example.
+This whitepaper focuses on the first approach \- strengthening the specification itself \- by introducing a new syntactic feature of the \*\*\*plain specification language: the :Concept: notation. Its purpose is to help developers refine their specifications in ways that reduce the risk of misinterpretation when the specifications are reviewed by human developers or used by AI to fully automatically generate software code. But before describing this new syntactic feature in detail, we take a step back and examine the inherent ambiguity of natural language that makes such a construct necessary, using the English word “task” as an example.
 
 ## The Illusion of Singular Meaning
 
@@ -38,7 +38,7 @@ When used to generate software code, the \*\*\*plain renderer will most likely i
 
 “Write a task manager app for an individual user that organizes concrete to-do items. Tasks should have priorities, deadlines, and a clear done/not-done state.”
 
-But \*\*\*plain renderer is using large language models (LLMs) on the backend which are probabilistic in nature. It is therefore entirely possible that an LLM will understand the instruction in one of the following alternative ways:
+But the \*\*\*plain renderer is using large language models (LLMs) on the backend which are probabilistic in nature. It is therefore entirely possible that an LLM will understand the instruction in one of the following alternative ways:
 
 “Write a task manager app that treats tasks as responsibilities assigned to people or roles. Tasks may be ongoing areas of accountability rather than single actions.”
 
