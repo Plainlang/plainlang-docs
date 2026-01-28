@@ -54,45 +54,52 @@ const config: Config = {
       title: '',
       logo: {
         alt: '***plain logo',
-        src: 'img/plain_green.svg',
+        src: 'img/plain logo_black.svg',
+        srcDark: 'img/plain logo_white.svg',
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
-          position: 'left',
-          label: 'Docs',
+          position: 'right',
+          label: 'docs',
+        },
+        {
+          to: '/docs/whitepapers',
+          position: 'right',
+          label: 'white papers',
         },
         {
           href: 'https://github.com/Plainlang',
-          label: 'GitHub',
           position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
       ],
     },
     footer: {
       style: 'dark',
+      logo: {
+        alt: '***plain logo',
+        src: 'img/plain_icon_black.svg',
+        srcDark: 'img/plain_icon_white.svg',
+        width: 40,
+      },
       links: [
         {
-          title: 'Docs',
           items: [
             {
-              label: 'Introduction',
+              label: 'GitHub',
+              href: 'https://github.com/Plainlang',
+            },
+            {
+              label: 'Docs',
               to: '/docs/intro',
             },
           ],
         },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Codeplain, Inc. Built with Docusaurus.`,
+      copyright: `hosted by *codeplain`,
     },
     prism: {
       theme: prismThemes.github,

@@ -1,0 +1,439 @@
+.playground {
+  width: 100%;
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: var(--ifm-font-color-base);
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: #888888;
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  background-color: var(--ifm-background-color);
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  background-color: rgba(128, 128, 128, 0.05);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tabsLeft {
+  display: flex;
+  gap: 0;
+  flex: 1;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabsRight {
+  display: flex;
+  padding-right: 1rem;
+}
+
+.tab {
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: #888888;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  font-family: var(--ifm-font-family-base);
+}
+
+.tab:hover {
+  color: var(--ifm-font-color-base);
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+.tabActive {
+  color: var(--ifm-font-color-base);
+  border-bottom-color: #79FC96;
+  font-weight: 600;
+}
+
+.runButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #79FC96;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Neue Montreal Mono', monospace;
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.runButton:hover {
+  opacity: 0.9;
+}
+
+.runButton svg {
+  width: 12px;
+  height: 12px;
+}
+
+.fullWidthView {
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  align-items: flex-start;
+}
+
+.splitView {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 500px;
+  align-items: stretch;
+}
+
+.leftPanel,
+.rightPanel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  align-self: stretch;
+}
+
+.leftPanel {
+  border-right: 1px solid #333;
+}
+
+.rightPanel {
+  position: relative;
+}
+
+.fileHeader,
+.outputHeader {
+  background-color: #1e1e1e;
+  padding: 0.75rem 1.5rem;
+  margin: 0;
+  border-bottom: 1px solid #333;
+  font-family: 'Neue Montreal Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.generatingIndicator {
+  font-size: 0.75rem;
+  color: #79FC96;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.codeBlock {
+  margin: 0;
+  padding: 1.5rem;
+  padding-top: 1.5rem;
+  background-color: #000000;
+  font-family: 'Neue Montreal Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  overflow-y: auto;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  width: 100%;
+  flex: 1;
+  border-radius: 0;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: #79FC96;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.4);
+  gap: 1rem;
+}
+
+.emptyState svg {
+  opacity: 0.3;
+}
+
+.emptyState p {
+  font-family: 'Neue Montreal Mono', monospace;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Plain file syntax highlighting */
+.codeBlock.plainLang {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.codeBlock.plainLang :global(.plain-header) {
+  color: #79FC96;
+  font-weight: 700;
+}
+
+.codeBlock.plainLang :global(.plain-template) {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.codeBlock.plainLang :global(.plain-keyword) {
+  color: #79FC96;
+}
+
+.codeBlock.plainLang :global(.plain-link) {
+  color: #79FC96;
+  text-decoration: none;
+}
+
+.codeBlock.plainLang :global(.plain-concept) {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+/* Python syntax highlighting */
+.codeBlock.python :global(.py-keyword) {
+  color: #c586c0;
+}
+
+.codeBlock.python :global(.py-function) {
+  color: #dcdcaa;
+}
+
+.codeBlock.python :global(.py-string) {
+  color: #ce9178;
+}
+
+.codeBlock.python :global(.py-comment) {
+  color: #6a9955;
+}
+
+.codeBlock.python :global(.py-builtin) {
+  color: #4ec9b0;
+}
+
+/* TypeScript/React syntax highlighting */
+.codeBlock.typescript :global(.ts-keyword) {
+  color: #569cd6;
+}
+
+.codeBlock.typescript :global(.ts-function) {
+  color: #dcdcaa;
+}
+
+.codeBlock.typescript :global(.ts-string) {
+  color: #ce9178;
+}
+
+.codeBlock.typescript :global(.ts-type) {
+  color: #4ec9b0;
+}
+
+.codeBlock.typescript :global(.ts-tag) {
+  color: #4ec9b0;
+}
+
+.codeBlock.typescript :global(.ts-attribute) {
+  color: #9cdcfe;
+}
+
+.codeBlock.typescript :global(.ts-comment) {
+  color: #6a9955;
+}
+
+.codeBlock.typescript :global(.ts-constant) {
+  color: #569cd6;
+}
+
+.outputArea {
+  padding: 0 1.5rem 1.5rem;
+  background-color: var(--ifm-background-color);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.outputHeader {
+  background-color: #1e1e1e;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid #333;
+  font-family: 'Neue Montreal Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 1.5rem;
+}
+
+.outputBlock {
+  margin: 0;
+  padding: 1.5rem;
+  background-color: #000000;
+  border-radius: 0 0 4px 4px;
+  font-family: 'Neue Montreal Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Dark theme adjustments */
+html[data-theme='dark'] .container {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme='dark'] .tabs {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Code blocks are always black background with green text */
+
+/* Mobile responsive */
+@media screen and (max-width: 768px) {
+  .playground {
+    margin: 3rem auto;
+    padding: 0 1rem;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .tabs {
+    flex-wrap: nowrap;
+  }
+
+  .tab {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .tabsRight {
+    padding-right: 0.5rem;
+  }
+
+  .runButton {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+
+  .splitView {
+    grid-template-columns: 1fr;
+    min-height: 400px;
+  }
+
+  .leftPanel {
+    border-right: none;
+    border-bottom: 1px solid #333;
+    max-height: 400px;
+  }
+
+  .rightPanel {
+    min-height: 300px;
+  }
+
+  .codeBlock {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tab {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .runButton {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+
+  .codeBlock {
+    font-size: 0.75rem;
+  }
+
+  .splitView {
+    min-height: 300px;
+  }
+}
