@@ -143,15 +143,15 @@ In this whitepaper, we use bold typeface solely to help readers quickly identify
 
 While the :Concept: notation makes key concepts explicit and visible to human readers, it delivers real value to developers when those concepts give tools something to check against, making ambiguity easier to spot. To support this and to make checks reliable, \*\*\*plain defines a small set of rules that govern how concepts written in :Concept: notation are introduced and used.
 
-1. **A concept must be defined before it can be used.**  
-2. **A definition must begin with a concept name.**  
-3. **A concept must not be redefined.**  
+1. **Concepts must be defined before they can be used.**  
+2. **Definitions must begin with concept names.**  
+3. **Concepts must not be redefined.**  
 4. **Concept names are case sensitive.**  
-5. **A concept’s meaning must not change.**
+5. **Concepts must not change meaning through use.**
 
 Together, these rules establish the conditions under which concepts can be checked reliably and used consistently, making ambiguity easier to surface in practice. The reasoning behind each rule is outlined below.
 
-1. **A concept must be defined before it can be used**
+### 1. Concepts must be defined before they can be used
 
 The primary goal of requiring that a concept be explicitly defined before it can be used is to ensure that the specification commits to a single, intended meaning for that concept throughout the specifications. When a developer chooses to use the :Concept: notation, they are signaling that the word or phrase should be treated as a stable unit of meaning rather than as an ordinary, context-dependent term.
 
@@ -177,7 +177,7 @@ Write :App: for managing :Task: items.
 
 This rule introduces a level of rigor that is not present in typical prose writing, where terms are often introduced casually and clarified later. That tradeoff is deliberate. \*\*\*plain specifications are not merely read by humans but are also used as input for automatic code generation. Prioritizing explicit meaning and unambiguous interpretation over narrative flow reduces the risk of speculative or inconsistent interpretations during generation.
 
-2. **A definition must begin with a concept name**
+### 2. Definitions must begin with concept names
 
 In \*\*\*plain, every concept definition must begin with the concept name itself, written using :Concept: notation. This requirement exists to make such definitions immediately recognizable and unambiguous, both for programmatic tools and for human readers.
 
@@ -195,7 +195,7 @@ This definition can be rewritten in canonical form as:
 
 By enforcing a single canonical form for definitions, \*\*\*plain separates what a concept means from how a developer might naturally phrase that meaning in prose. Developers remain free to use natural language in definitions, but the structural role of a definition is made explicit and mechanically checkable.
 
-3. **A concept must not be redefined**
+### 3. Concepts must not be redefined
 
 In larger specifications, it would be easy to miss that a concept has already been defined elsewhere if redefinition were allowed. More importantly, permitting redefinition would allow multiple, potentially conflicting meanings to coexist under the same name, undermining the purpose of introducing explicit concepts in the first place.
 
@@ -216,7 +216,7 @@ If a third module imports both, the name :Task: can no longer serve as a stable 
 
 For this reason, \*\*\*plain treats concept names as global commitments rather than local conveniences. Introducing a concept name establishes a single, stable unit of meaning that applies wherever that name appears. Prohibiting redefinition preserves that stability and ensures that both humans and tools can rely on concept names as unambiguous references throughout the specification.
 
-4. **Concept names are case sensitive**
+### 4. Concept names are case sensitive
 
 In \*\*\*plain, the developer is free to name concepts using any combination of the following ASCII characters:
 
@@ -240,7 +240,7 @@ Case sensitivity does introduce the possibility of accidental variation, particu
 
 By making case sensitivity a rule rather than a convention, \*\*\*plain reinforces the idea that concept names are not merely stylistic labels but explicit commitments to meaning. A difference in name \- however small \- is treated as a difference in concept, and therefore demands explicit intent.
 
-5. **A concept’s meaning must not change**
+### 5. Concepts must not change meaning through use
 
 Philosophers of language[^5] have long pointed out that words do not carry meaning in isolation. Instead, meaning emerges through how words and concepts are used in context. As a result, a concept’s meaning is not fixed solely by its explicit definition; it is also shaped \- and can be distorted \- by how it is used in the specification text.
 
@@ -256,11 +256,11 @@ If we were to allow the following functional specification, we would introduce s
 - :App: should be capable of running **:Task:** items concurrently.
 ```
 
-In this case, it is no longer clear whether :Task: refers to a duty performed by the user or to a technical operation executed by the system. In other words, the concept is implicitly redefined through its usage, even though its explicit definition has not changed.
+In this case, it is no longer clear whether :Task: refers to a duty performed by the user or to a technical operation executed by the system. In other words, the concept is implicitly redefined through its use, even though its explicit definition has not changed.
 
-Unlike the previous rules, this constraint cannot be enforced purely syntactically and necessarily relies on semantic analysis of how concepts are used throughout the specification. Enforcement of this rule is based on consistency checks between a concept’s definition and its usage. A usage is considered problematic when a reasonable reader \-  including an LLM \- could infer that it conflicts with the concept’s stated meaning. The goal of these checks is to surface situations where meaning may drift, so the specification can be strengthened to eliminate the ambiguity.
+Unlike the previous rules, this constraint cannot be enforced purely syntactically and necessarily relies on semantic analysis of how concepts are used throughout the specification. Enforcement of this rule is based on consistency checks between a concept’s definition and its use. A particular use is considered problematic when a reasonable reader \-  including an LLM \- could infer that it conflicts with the concept’s stated meaning. The goal of these checks is to surface situations where meaning may drift, so the specification can be strengthened to eliminate the ambiguity.
 
-By enforcing stability of meaning through use, this rule ensures that concepts function as reliable anchors of intent. Once introduced, a concept name constitutes a commitment not only to a definition, but to a consistent and coherent pattern of usage throughout the specification. Where a substantially different meaning is required, a new and explicit concept name must be introduced, preserving the original concept as a stable unit of meaning.
+By enforcing stability of meaning through use, this rule ensures that concepts function as reliable anchors of intent. Once introduced, a concept name constitutes a commitment not only to a definition, but to a consistent and coherent pattern of use throughout the specification. Where a substantially different meaning is required, a new and explicit concept name must be introduced, preserving the original concept as a stable unit of meaning.
 
 ## Summary
 
