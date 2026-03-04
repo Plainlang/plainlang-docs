@@ -1,9 +1,53 @@
 ---
-sidebar_position: 3
+sidebar_position: 7
 title: Extended syntax
 ---
 
 # Extended Syntax
+
+## YAML Frontmatter
+
+The frontmatter is enclosed between `---` markers and can contain:
+
+```yaml
+---
+description: "Optional description of this specification"
+import:
+  - module-name-1
+  - module-name-2
+requires:
+  - dependency-module-1
+  - dependency-module-2
+---
+```
+
+### `import` Section
+
+The `import:` section is used to include definitions, implementation requirements, and test requirements from other modules or templates. Imported modules should **not** contain functional specifications - they only provide reusable definitions and constraints.
+
+**Example:**
+```yaml
+import:
+  - typescript-react-app-template
+```
+
+Common use cases:
+- Importing language-specific templates (e.g., `python-console-app-template`)
+- Importing shared concept definitions
+- Importing implementation and testing conventions
+
+### `requires` Section
+
+The `requires:` section specifies dependencies on other modules that must be built before this specification. Unlike `import:`, required modules can contain functional specifications and represent complete software modules.
+
+**Example:**
+```yaml
+requires:
+  - authentication-module
+  - database-layer
+```
+
+Use `requires:` when your specification depends on functionality implemented in other modules that need to be generated first.
 
 ## Comments
 
@@ -26,13 +70,16 @@ The template system enables code reuse and standardization across ***plain proje
 
 ## Linked Resources
 
-If you include a link using the markdown syntax, the linked resource will be passed along with the ***plain specification to the renderer.
+Specifications can reference external files for detailed UI specifications or other documentation.
 
 Here's an example of a linked resource (see Task manager example application for the full specification).
 
-```plain
-- Show :Task: List. The details of the user interface are provided in the file [task_list_ui_specification.yaml](task_list_ui_specification.yaml).
 ```
+- :User: should be able to add :Task:. The details of the user interface
+  are provided in the file [task_modal_specification.yaml](task_modal_specification.yaml).
+```
+
+If you include a link using the markdown syntax, the linked resource will be passed along with the ***plain specification to the renderer.
 
 **Important Notes:**
 - Only links to files in the same folder (and its subfolders) as the ***plain specification are supported. Links to external resources are not supported.
