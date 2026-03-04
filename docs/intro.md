@@ -191,7 +191,7 @@ Lines starting with `>` are ignored when rendering software code.
 ```plain
 {% include "python-console-app-template.plain", main_executable_file_name: "my_app.py" %}
 ```
-Predefined templates are available for Go console apps, Python console apps, and TypeScript React apps in the [standard template library](../standard_template_library/). You can also create your own custom templates.
+Predefined templates are available for Go console apps, Python console apps, and TypeScript React apps in the [standard template library](https://github.com/Codeplain-ai/codeplain/tree/main/standard_template_library). You can also create your own custom templates.
 
 The template system enables code reuse and standardization across ***plain projects.
 
