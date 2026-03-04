@@ -8,4 +8,5 @@ This section is a comprehensive guide to the ***plain language.
 ## Contents
 
 - [Basic syntax](./basic-syntax.md)
-- [Definitons](./definitons.md)
+- [Definitons](./definitions.md)
+- [Extended syntax](./extended-syntax.md)
