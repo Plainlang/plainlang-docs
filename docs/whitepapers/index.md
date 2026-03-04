@@ -7,4 +7,4 @@ This section contains longer-form technical documents.
 
 ## Contents
 
-- Start here: [On the Concept of :Concept:](./on-the-concept-of-concept.md)
+- [On the Concept of :Concept:](./on-the-concept-of-concept.md)

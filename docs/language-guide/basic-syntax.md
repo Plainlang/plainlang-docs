@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
+title: Basic syntax
 ---
 
-# Overview
+# Basic syntax
 
 ## About ***plain programming language
 
@@ -26,20 +27,20 @@ Here's an example of a "hello, world" program in ***plain.
 - Display "hello, world"
 ```
 
-### Specifications
+## Specifications
 
 There are four types of specifications:
 
 - `***definitions***`
 - `***implementation reqs***`
-- `***functional specs***`
 - `***test reqs***`
+- `***functional specs***`
 
 Every plain source file requires at least one functional spec and an associated implementation req.
 
 Functional specs must reside in leaf sections while other specifications can be placed also in non-leaf sections. Specifications in non-leaf sections apply not just to the section itself but to all of its subsections.
 
-## Definitions
+### Definitions
 
 The `***definitions***` specification is a list of definitions of new concepts.
 
@@ -51,34 +52,9 @@ Here's an example of a simple definiton.
 
 In this case, the concept name is `:App:`. Concepts are important for refering to definitions in the rest of the specification.
 
-While providing definitions, you should adhere to the following 4 rules:
+See [Definitons](./definitons.md) for more information.
 
-- Every definition must start with the name of the concept you are defining.
-- Each concept name must be enclosed in colons (`:`) at both the beginning and end.
-  - Valid characters for concept name include: Plus sign (`+`), Minus sign (`-`), Dot sign (`.`), Digits (`0`-`9`), Uppercase letters (`A`-`Z`), Underscore (`_`), Lowercase letters (`a`-`z`)
-  - Examples: `:App:`, `:Tasks:`, `:ListOfUsers:`, `:CLI:`.
-- Concept names must be globally unique (meaning, you cannot provide two definitions with the same concept name).
-- When referencing concepts in ***test reqs***, ***functional specs***, ***implementation reqs*** and ***acceptance tests***, the concept name must exist in the ***definitions*** section.
-
-Furthermore, there are special concepts that are already defined and are ready to use. They should not be redefined:
-
-- `:ConformanceTests:`
-- `:UnitTests:`
-- `:AcceptanceTests:`
-- `:Implementation:`
-
-Definitions are the mechanism for definining data structures in ***plain. Here's an example of two definitions.
-
-```plain
-- :User: is a person who uses the application.
-
-- :Task: describes an activity that needs to be done by :User:. :Task: has the following attributes:
-  - Name - a short description of :Task:. This is a required attribute. The name must be at least 3 characters long.
-  - Notes - additional details about :Task:
-  - Due Date - optional date by which :User: is supposed to complete :Task:.
-```
-
-## Implementation Reqs
+### Implementation Reqs
 
 The `***implementation reqs***` specification is a list of instructions that steer software code implementation and provide details of execution environment.
 
@@ -100,7 +76,19 @@ Here's an example of more complex instructions.
 - The main executable file of :App: should be called hello_world.py
 ```
 
-## Functional Specs
+### Test Reqs
+
+The `***test reqs***` specification is a list of instructions that steer implementation of conformance tests and provide details of testing environment.
+
+**Conformance tests** is the generated code used to verify that the functional spec is implemented according to the specification.
+
+Here's an example specification of test reqs.
+
+```plain
+- :ConformanceTests: of :App: should be implemented in Python using Unittest framework.
+```
+
+### Functional Specs
 
 The `***functional specs***` specification provides a description of functionality that should be rendered to software code. The descriptions should be provided in natural language as a markdown list.
 
@@ -161,55 +149,3 @@ Here's an example of a "Hello, World" application with one acceptance test.
 ```
 
 Acceptance tests extend **conformance tests**. The acceptance tests are implemented according to the ***test reqs*** specification (see below).
-
-## Test Reqs
-
-The `***test reqs***` specification is a list of instructions that steer implementation of conformance tests and provide details of testing environment.
-
-**Conformance tests** is the generated code used to verify that the functional spec is implemented according to the specification.
-
-Here's an example specification of test reqs.
-
-```plain
-- :ConformanceTests: of :App: should be implemented in Python using Unittest framework.
-```
-
-# Extended Syntax
-
-## Comments
-
-Lines starting with `>` are ignored when rendering software code.
-
-```plain
-> This is an example of a comment in ***plain
-```
-
-## Template System
-
-***plain supports template inclusion using the `{% include %}` syntax, which allows you to use predefined templates in your specifications.
-
-```plain
-{% include "python-console-app-template.plain", main_executable_file_name: "my_app.py" %}
-```
-Predefined templates are available for Go console apps, Python console apps, and TypeScript React apps in the [standard template library](https://github.com/Codeplain-ai/codeplain/tree/main/standard_template_library). You can also create your own custom templates.
-
-The template system enables code reuse and standardization across ***plain projects.
-
-## Linked Resources
-
-If you include a link using the markdown syntax, the linked resource will be passed along with the ***plain specification to the renderer.
-
-Here's an example of a linked resource (see Task manager example application for the full specification).
-
-```plain
-- Show :Task: List. The details of the user interface are provided in the file [task_list_ui_specification.yaml](task_list_ui_specification.yaml).
-```
-
-**Important Notes:**
-- Only links to files in the same folder (and its subfolders) as the ***plain specification are supported. Links to external resources are not supported.
-- File paths are resolved relative to the location of the ***plain specification file.
-- All types are supported, except binary files.
-
-## Liquid templates
-
-***plain supports Liquid templates. Liquid is an open-source template language created by Shopify (https://shopify.github.io/liquid/).

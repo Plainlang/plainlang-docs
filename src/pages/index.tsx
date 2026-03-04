@@ -20,7 +20,7 @@ export default function Home(): ReactNode {
             ***plain is a specification language that combines the efficiency of natural language with the control and precision of code.
           </p>
           <div className={styles.ctaButtons}>
-            <a href="/docs/intro" className={styles.primaryButton}>
+            <a href="/docs/language-guide/basic-syntax" className={styles.primaryButton}>
               GET STARTED
             </a>
             {/* <a href="#demo" className={styles.secondaryButton}>

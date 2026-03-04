@@ -34,7 +34,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/Plainlang/plainlang-docs/edit/main/',
+          editUrl: 'https://github.com/plainlang/plainlang-docs/edit/main/',
         },
         blog: false,
         theme: {
@@ -70,7 +70,7 @@ const config: Config = {
           label: 'white papers',
         },
         {
-          href: 'https://github.com/Plainlang',
+          href: 'https://github.com/plainlang',
           position: 'right',
           className: 'header-github-link',
           'aria-label': 'GitHub repository',
@@ -89,17 +89,12 @@ const config: Config = {
         {
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/Plainlang',
-            },
-            {
-              label: 'Docs',
-              to: '/docs/intro',
+              label: 'hosted by *codeplain',
+              href: 'https://www.codeplain.ai/',
             },
           ],
         },
       ],
-      copyright: `hosted by *codeplain`,
     },
     prism: {
       theme: prismThemes.github,
