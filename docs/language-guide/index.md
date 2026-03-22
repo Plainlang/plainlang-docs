@@ -15,6 +15,7 @@ This section is a comprehensive guide to the ***plain language.
 - [Acceptance Tests](./acceptance-tests)
 - [Extended Syntax](./extended-syntax)
 - [Best Practices](./best-practices)
+- [Glossary](./glossary)
 
 # Additional Resources
 
