@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import {useState} from 'react';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import styles from './brand.module.css';
 
 function ColorSwatch({name, hex, textColor}: {name: string; hex: string; textColor: string}) {
@@ -56,7 +57,16 @@ function LogoCard({src, alt, bg, filename, icon = false}: {
 
 export default function Brand(): ReactNode {
   return (
-    <Layout title="Brand" description="Codeplain brand guidelines — identity, logo, colors, and typography.">
+    <Layout title="plain | brand guidelines" description="Resources for presenting the ***plain brand consistently and professionally.">
+      <Head>
+        <meta property="og:title" content="plain | brand guidelines" />
+        <meta property="og:description" content="Resources for presenting the ***plain brand consistently and professionally." />
+        <meta property="og:image" content="/img/plain_og.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="plain | brand guidelines" />
+        <meta name="twitter:description" content="Resources for presenting the ***plain brand consistently and professionally." />
+        <meta name="twitter:image" content="/img/plain_og.png" />
+      </Head>
       <div className={styles.page}>
 
         {/* Hero */}
